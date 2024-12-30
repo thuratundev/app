@@ -22,6 +22,7 @@ async function doInit() {
 
 
     console.log("doInit - end");
+    console.log("doInit - exit");
 }
 
 
