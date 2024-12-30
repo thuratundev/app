@@ -1,33 +1,34 @@
-export class User {
-
+interface User {
     id: number;
-    name: string;
-    email: string;
-    createdAt: Date;
-    gender?: string | null;
-
-    constructor(id: number, name: string, email: string, createdAt: Date) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.createdAt = createdAt;
-        
-    }
-
-    IsMale():boolean{
-        return this.gender == "M" ? true : false;   
-    }
-
-    greeting(name: string) {
-        let count = 0;
-        console.log(`Hello ${name}, I'm ${this.name}`);
-        return {
-            greetingcount: () => {
-                count++;
-                console.log(count);
-            }
+    firstname: string;
+    lastname: string;
+    email:string;
+    birthDate: string;
+    login: {
+        uuid: string;
+        username: string;
+        password: string;
+        md5: string;
+        sha1: string;
+        registered: string;
+    };
+    address: {
+        street: string;
+        suite: string;
+        city: string;
+        zipcode: string;
+        geo: {
+            lat: string;
+            lng: string;
         };
-    }
-
-
+    };
+    phone: string;
+    website: string;
+    company: {
+        name: string;
+        catchPhrase: string;
+        bs: string;
+    };
 }
+
+export { User };

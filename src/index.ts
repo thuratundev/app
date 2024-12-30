@@ -1,12 +1,29 @@
-import { CustomerInfo } from "./classsample";  
-import { apiService, ApiResponse } from "./services/apiservice";
+import { apiService } from "./services/apiservice";
+import { User } from "./models/user";
 
 
-let customer:CustomerInfo = new CustomerInfo("John Doe", "1234567890", "123 Main St", true);
-console.log(customer.getCustomerInfo());
+async function getUserInfo(): Promise<User[]> {
+    let result: User[] = await apiService.get("https://jsonplaceholder.org/users");
+    return result;
+}
 
-apiService.get("https://jsonplaceholder.org/users").then((result:ApiResponse[]) => {
-    result.forEach((item: ApiResponse) => {
-        console.log(item.firstname + " " + item.lastname);
-    });
-});
+
+async function doInit() {
+    console.log("doInit - start");
+
+        await getUserInfo().then((result: User[]) => {
+            result.forEach((item: User) => {
+                console.log(item.firstname + " " + item.lastname);
+
+            });
+        }).catch((error: Error) => {
+            console.log("Error: " + error.message);
+        });
+
+
+    console.log("doInit - end");
+}
+
+
+doInit();
+
